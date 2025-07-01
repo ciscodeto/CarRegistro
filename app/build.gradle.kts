@@ -57,17 +57,18 @@ dependencies {
     implementation(libs.koin.core)
     implementation(libs.koin.android)
     implementation(libs.koin.androidx.compose)
-    implementation(libs.koin.ktor)
-    implementation(libs.koin.logger.slf4j)
 
     // Room DB
     ksp(libs.room.compiler)
+    implementation(libs.androidx.room.ktx)
     implementation(libs.room.runtime)
     implementation(libs.sqlite.bundled)
 
     // Ktor
     implementation(libs.ktor.client.core)
     implementation(libs.ktor.client.cio)
+    implementation(libs.ktor.client.content.negotiation)
+    implementation(libs.ktor.serialization.kotlinx.json)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
