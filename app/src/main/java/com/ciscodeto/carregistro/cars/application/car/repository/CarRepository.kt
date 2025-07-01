@@ -4,6 +4,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface CarRepository {
     suspend fun findAll(): Flow<List<CarDto>>
+    suspend fun findByApiId(id: Int): CarDto?
     suspend fun insert(car: CarDto)
     suspend fun update(car: CarDto)
     suspend fun delete(id: Int)

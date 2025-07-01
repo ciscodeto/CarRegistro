@@ -1,4 +1,4 @@
-package com.ciscodeto.carregistro.infrastructure.local
+package com.ciscodeto.carregistro.infrastructure.local.car
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

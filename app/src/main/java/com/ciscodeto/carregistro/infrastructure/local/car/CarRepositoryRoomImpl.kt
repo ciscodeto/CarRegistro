@@ -1,4 +1,4 @@
-package com.ciscodeto.carregistro.infrastructure.local
+package com.ciscodeto.carregistro.infrastructure.local.car
 
 import com.ciscodeto.carregistro.cars.application.car.repository.CarDto
 import com.ciscodeto.carregistro.cars.application.car.repository.CarRepository
@@ -12,6 +12,10 @@ class CarRepositoryRoomImpl(
         return dao.getAll().map { entities ->
             entities.map { it.toDto() }
         }
+    }
+
+    override suspend fun findByApiId(id: Int): CarDto? {
+        return dao.getByApiId(id)?.toDto()
     }
 
     override suspend fun insert(car: CarDto) {

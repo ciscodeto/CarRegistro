@@ -1,4 +1,4 @@
-package com.ciscodeto.carregistro.infrastructure.local
+package com.ciscodeto.carregistro.infrastructure.local.car
 
 import androidx.room.Dao
 import androidx.room.Insert
@@ -15,11 +15,14 @@ interface CarDao {
     @Query("SELECT * FROM cars WHERE id = :id")
     suspend fun getById(id: Int): CarEntity?
 
-    @Insert(onConflict = OnConflictStrategy.NONE)
-    suspend fun insert(character: CarEntity)
+    @Query("SELECT * FROM cars WHERE idApi = :apiId")
+    suspend fun getByApiId(apiId: Int): CarEntity?
+
+    @Insert
+    suspend fun insert(car: CarEntity)
 
     @Upsert
-    suspend fun upsert(character: CarEntity)
+    suspend fun upsert(car: CarEntity)
 
     @Query("DELETE FROM cars WHERE id = :id")
     suspend fun delete(id: Int)

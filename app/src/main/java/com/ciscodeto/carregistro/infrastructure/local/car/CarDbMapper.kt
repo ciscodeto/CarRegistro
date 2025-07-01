@@ -1,4 +1,4 @@
-package com.ciscodeto.carregistro.infrastructure.local
+package com.ciscodeto.carregistro.infrastructure.local.car
 
 import com.ciscodeto.carregistro.cars.application.car.repository.CarDto
 
