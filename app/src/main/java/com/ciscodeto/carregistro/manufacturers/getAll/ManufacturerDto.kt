@@ -1,6 +1,10 @@
 package com.ciscodeto.carregistro.manufacturers.getAll
 
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class ManufacturerDto(
-    val id: Int,
-    val name: String,
+    @SerialName("id") val id: Int,
+    @SerialName("nome") val name: String,
 )
