@@ -13,7 +13,7 @@ interface CarDao {
     fun getAll(): Flow<List<CarEntity>>
 
     @Query("SELECT * FROM cars WHERE id = :id")
-    suspend fun getById(id: ByteArray): CarEntity?
+    suspend fun getById(id: Int): CarEntity?
 
     @Insert(onConflict = OnConflictStrategy.NONE)
     suspend fun insert(character: CarEntity)
@@ -22,5 +22,5 @@ interface CarDao {
     suspend fun upsert(character: CarEntity)
 
     @Query("DELETE FROM cars WHERE id = :id")
-    suspend fun delete(id: ByteArray)
+    suspend fun delete(id: Int)
 }

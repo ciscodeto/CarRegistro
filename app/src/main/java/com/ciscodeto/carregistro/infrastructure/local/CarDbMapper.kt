@@ -6,7 +6,17 @@ fun CarEntity.toDto() = CarDto(
     id = id,
     idApi = idApi,
     model = model,
-    idManufacturer = idManufacturer,
+    manufacturerId = idManufacturer,
+    manufacturer = null,
+    year = year,
+    motorization = motorization
+)
+
+fun CarDto.toEntity() = CarEntity(
+    id = id,
+    idApi = idApi,
+    model = model,
+    idManufacturer = manufacturerId,
     year = year,
     motorization = motorization
 )
