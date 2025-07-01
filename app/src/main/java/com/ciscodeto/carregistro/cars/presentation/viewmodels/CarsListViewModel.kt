@@ -1,4 +1,7 @@
 package com.ciscodeto.carregistro.cars.presentation.viewmodels
 
-class CarsListViewModel {
+import androidx.lifecycle.ViewModel
+
+class CarsListViewModel : ViewModel() {
+
 }
