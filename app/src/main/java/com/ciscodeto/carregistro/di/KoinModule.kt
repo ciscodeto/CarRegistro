@@ -1,18 +1,51 @@
 package com.ciscodeto.carregistro.di
 
+import android.content.Context
+import androidx.room.Room
+import androidx.room.RoomDatabase
 import com.ciscodeto.carregistro.cars.application.car.getAll.GetCars
 import com.ciscodeto.carregistro.cars.application.car.getAll.GetCarsImpl
+import com.ciscodeto.carregistro.cars.application.car.repository.CarRepository
 import com.ciscodeto.carregistro.cars.presentation.viewmodels.CarsListViewModel
+import com.ciscodeto.carregistro.infrastructure.api.CarApiService
+import com.ciscodeto.carregistro.infrastructure.api.ManufacturerRepositoryApiImpl
+import com.ciscodeto.carregistro.infrastructure.api.provideHttpClient
+import com.ciscodeto.carregistro.infrastructure.local.AppDatabase
+import com.ciscodeto.carregistro.infrastructure.local.car.CarDao
+import com.ciscodeto.carregistro.infrastructure.local.car.CarRepositoryRoomImpl
 import com.ciscodeto.carregistro.manufacturers.getAll.GetManufacturers
+import com.ciscodeto.carregistro.manufacturers.getAll.GetManufacturersImpl
+import com.ciscodeto.carregistro.manufacturers.repository.ManufacturerRepository
+import io.ktor.client.HttpClient
 import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
 
+val apiModule = module {
+    single<HttpClient> { provideHttpClient() }
+    single<CarApiService> { CarApiService(get()) }
+}
+
+val databaseModule = module {
+    single {
+        Room.databaseBuilder(
+                context = get(),
+                klass = AppDatabase::class.java,
+                name = "cars.db"
+            ).fallbackToDestructiveMigration(false)
+            .build()
+    }
+
+    single<CarDao> { get<AppDatabase>().carDao() }
+}
+
 val carsModule = module {
+    single<CarRepository> { CarRepositoryRoomImpl(get()) }
     single<GetCars> { GetCarsImpl(get(), get()) }
 }
 
 val manufacturersModule = module {
-    single<GetManufacturers> { GetManufacturersImpl(get(), get()) }
+    single<ManufacturerRepository> { ManufacturerRepositoryApiImpl(get()) }
+    single<GetManufacturers> { GetManufacturersImpl(get()) }
 }
 
 val viewModelModule = module {
@@ -23,5 +56,8 @@ val viewModelModule = module {
 
 fun appModules() = listOf(
     viewModelModule,
-    carsModule
+    carsModule,
+    databaseModule,
+    manufacturersModule,
+    apiModule
 )

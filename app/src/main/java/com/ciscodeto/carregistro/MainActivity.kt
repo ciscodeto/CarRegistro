@@ -23,16 +23,12 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
 
         setContent {
-            KoinApplication(
-                application = { modules(appModules()) }
-            ) {
-                CarregistroTheme {
-                    Scaffold(
-                        modifier = Modifier.fillMaxSize(),
-                        topBar = { Text("CarRegistro") }
-                    ) { innerPadding ->
-                        CarsListScreen(modifier = Modifier.padding(innerPadding))
-                    }
+            CarregistroTheme {
+                Scaffold(
+                    modifier = Modifier.fillMaxSize(),
+                    topBar = { Text("CarRegistro") }
+                ) { innerPadding ->
+                    CarsListScreen(modifier = Modifier.padding(innerPadding))
                 }
             }
         }
