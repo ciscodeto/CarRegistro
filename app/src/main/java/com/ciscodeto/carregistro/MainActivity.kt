@@ -14,15 +14,21 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.ciscodeto.carregistro.cars.presentation.screens.CarsListScreen
 import com.ciscodeto.carregistro.ui.theme.CarregistroTheme
+import org.koin.compose.KoinApplication
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
         setContent {
-            CarregistroTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    CarsListScreen(modifier = Modifier.padding(innerPadding))
+            KoinApplication(
+                application = { modules(appModules()) }
+            ) {
+                CarregistroTheme {
+                    Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                        CarsListScreen(modifier = Modifier.padding(innerPadding))
+                    }
                 }
             }
         }
