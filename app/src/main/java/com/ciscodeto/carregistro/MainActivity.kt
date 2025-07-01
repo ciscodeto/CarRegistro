@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.ciscodeto.carregistro.cars.presentation.screens.CarsListScreen
+import com.ciscodeto.carregistro.di.appModules
 import com.ciscodeto.carregistro.ui.theme.CarregistroTheme
 import org.koin.compose.KoinApplication
 
@@ -26,7 +27,10 @@ class MainActivity : ComponentActivity() {
                 application = { modules(appModules()) }
             ) {
                 CarregistroTheme {
-                    Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                    Scaffold(
+                        modifier = Modifier.fillMaxSize(),
+                        topBar = { Text("CarRegistro") }
+                    ) { innerPadding ->
                         CarsListScreen(modifier = Modifier.padding(innerPadding))
                     }
                 }
