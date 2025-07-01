@@ -3,6 +3,7 @@ agp = "8.10.1"
 koinVersion = "4.1.0"
 kotlin = "2.1.21"
 ksp = "2.1.21-2.0.1"
+ktor = "3.2.0"
 room-version = "2.7.2"
 sqlite = "2.5.2"
 coreKtx = "1.16.0"
@@ -37,6 +38,8 @@ koin-ktor = { module = "io.insert-koin:koin-ktor", version.ref = "koinVersion" }
 koin-logger-slf4j = { module = "io.insert-koin:koin-logger-slf4j", version.ref = "koinVersion" }
 
 # Room Dependencies
+ktor-client-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
+ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "room-version" }
 room-runtime = { module = "androidx.room:room-runtime", version.ref = "room-version" }
 sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.ref = "sqlite" }

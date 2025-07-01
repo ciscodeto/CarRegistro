@@ -64,6 +64,10 @@ dependencies {
     implementation(libs.room.runtime)
     implementation(libs.sqlite.bundled)
 
+    // Ktor
+    implementation(libs.ktor.client.core)
+    implementation(libs.ktor.client.cio)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
