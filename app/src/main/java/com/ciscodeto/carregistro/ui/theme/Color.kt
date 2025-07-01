@@ -6,7 +6,7 @@ val Blue40 = Color(0xFF4779BF)
 val BlueGrey40 = Color(0xFF486998)
 val Cyan40 = Color(0xFF4FC3F7)
 
-val Blue80 = Color(0xFF9BBEF3)
+val Blue80 = Color(0xff80b2ff)
 val BlueGrey80 = Color(0xFF8FA8D0)
 val Cyan80 = Color(0xFFB2EBF2)
 
