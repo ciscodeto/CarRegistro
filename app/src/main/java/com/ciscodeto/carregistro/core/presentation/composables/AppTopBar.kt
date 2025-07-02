@@ -1,6 +1,7 @@
 package com.ciscodeto.carregistro.core.presentation.composables
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Refresh
@@ -16,17 +17,11 @@ import androidx.compose.ui.Modifier
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppTopBar(
-    onClick: () -> Unit = {},
+    actions: @Composable RowScope.() -> Unit = {},
 ) {
     CenterAlignedTopAppBar(
         title = { Text("CarRegistro") },
-        actions = {
-            Icon(
-                Icons.Filled.Refresh,
-                tint = MaterialTheme.colorScheme.primary,
-                contentDescription = "Menu",
-                modifier = Modifier.clickable { onClick() })
-        },
+        actions = actions,
         colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
             containerColor = MaterialTheme.colorScheme.primaryContainer,
             titleContentColor = MaterialTheme.colorScheme.primary,
