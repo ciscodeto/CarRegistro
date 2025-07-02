@@ -10,8 +10,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import com.ciscodeto.carregistro.cars.presentation.screens.composables.CarListElement
 import com.ciscodeto.carregistro.cars.presentation.viewmodels.CarsListViewModel
+import com.ciscodeto.carregistro.core.presentation.composables.AppTopBar
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
@@ -22,8 +24,10 @@ fun CarsListScreen(
     val cars by viewModel.cars.collectAsState()
 
     Scaffold(
-        modifier = Modifier.fillMaxSize(),
-        topBar = { Text("CarRegistro") }
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(10.dp),
+        topBar = { AppTopBar { viewModel.syncCars() } }
     ) { innerPadding ->
         LazyColumn(modifier = modifier
             .padding(innerPadding)

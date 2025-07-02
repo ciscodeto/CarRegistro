@@ -7,7 +7,7 @@ import com.ciscodeto.carregistro.infrastructure.local.car.CarEntity
 
 @Database(
     entities = [CarEntity::class],
-    version = 2,
+    version = 3,
     exportSchema = true
 )
 abstract class AppDatabase : RoomDatabase() {

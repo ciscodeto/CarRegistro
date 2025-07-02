@@ -10,7 +10,7 @@ data class CarResponse(
     @SerialName("id") val id: Int,
     @SerialName("id_montadora") val manufacturerId: Int,
     @SerialName("modelo") val model: String,
-    @SerialName("motorizacao") val motorization: Float
+    @SerialName("motorizacao") val motorization: String
 ) {
     fun toDto() = CarDto(
         id = 0,

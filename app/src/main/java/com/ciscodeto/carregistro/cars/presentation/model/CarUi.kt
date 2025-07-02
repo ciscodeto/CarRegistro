@@ -6,5 +6,5 @@ data class CarUi(
     val manufacturerId: Int,
     val manufacturer: String,
     val year: Int,
-    val motorization: Float,
+    val motorization: String,
 )

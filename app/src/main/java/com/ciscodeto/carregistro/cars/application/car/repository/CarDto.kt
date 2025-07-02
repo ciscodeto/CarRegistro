@@ -10,5 +10,5 @@ data class CarDto (
     val manufacturerId: Int,
     val manufacturer: String?,
     val year: Int,
-    val motorization: Float,
+    val motorization: String,
 )

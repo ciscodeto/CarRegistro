@@ -11,5 +11,5 @@ data class CarEntity(
     val model: String,
     val idManufacturer: Int,
     val year: Int,
-    val motorization: Float,
+    val motorization: String,
 )
