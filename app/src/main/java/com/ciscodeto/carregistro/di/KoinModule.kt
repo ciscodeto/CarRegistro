@@ -3,9 +3,15 @@ package com.ciscodeto.carregistro.di
 import android.content.Context
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.ciscodeto.carregistro.cars.application.car.delete.DeleteCar
+import com.ciscodeto.carregistro.cars.application.car.delete.DeleteCarImpl
 import com.ciscodeto.carregistro.cars.application.car.getAll.GetCars
 import com.ciscodeto.carregistro.cars.application.car.getAll.GetCarsImpl
+import com.ciscodeto.carregistro.cars.application.car.getAll.ImportApiCars
+import com.ciscodeto.carregistro.cars.application.car.getAll.ImportApiCarsImpl
 import com.ciscodeto.carregistro.cars.application.car.repository.CarRepository
+import com.ciscodeto.carregistro.cars.application.car.update.UpdateCar
+import com.ciscodeto.carregistro.cars.application.car.update.UpdateCarImpl
 import com.ciscodeto.carregistro.cars.presentation.viewmodels.CarsListViewModel
 import com.ciscodeto.carregistro.infrastructure.api.CarApiService
 import com.ciscodeto.carregistro.infrastructure.api.ManufacturerRepositoryApiImpl
@@ -41,6 +47,9 @@ val databaseModule = module {
 val carsModule = module {
     single<CarRepository> { CarRepositoryRoomImpl(get()) }
     single<GetCars> { GetCarsImpl(get(), get()) }
+    single<UpdateCar> { UpdateCarImpl(get()) }
+    single<DeleteCar> { DeleteCarImpl(get()) }
+    single<ImportApiCars> { ImportApiCarsImpl(get(), get()) }
 }
 
 val manufacturersModule = module {
@@ -50,7 +59,7 @@ val manufacturersModule = module {
 
 val viewModelModule = module {
     viewModel {
-        CarsListViewModel()
+        CarsListViewModel(get(), get(), get(), get())
     }
 }
 
