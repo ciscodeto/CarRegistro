@@ -5,6 +5,6 @@ import androidx.compose.ui.Modifier
 import com.ciscodeto.carregistro.cars.presentation.model.CarUi
 
 @Composable
-fun CarListElement(carUI: CarUi, modifier: Modifier = Modifier) {
+fun CarListElement(carUi: CarUi, modifier: Modifier = Modifier) {
 
 }

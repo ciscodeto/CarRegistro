@@ -24,12 +24,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             CarregistroTheme {
-                Scaffold(
-                    modifier = Modifier.fillMaxSize(),
-                    topBar = { Text("CarRegistro") }
-                ) { innerPadding ->
-                    CarsListScreen(modifier = Modifier.padding(innerPadding))
-                }
+                CarsListScreen()
             }
         }
     }
