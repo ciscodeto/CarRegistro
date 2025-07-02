@@ -1,3 +1,6 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -6,6 +9,16 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.room)
 }
+
+val localProps = Properties()
+val localPropertiesFile = rootProject.file("app/local.properties")
+
+if (localPropertiesFile.exists()) {
+    localProps.load(FileInputStream(localPropertiesFile))
+}
+
+val baseUrl: String = localProps.getProperty("BASE_URL")
+    ?: throw GradleException("BASE_URL not found in local.properties")
 
 android {
     namespace = "com.ciscodeto.carregistro"
@@ -19,6 +32,8 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "BASE_URL", "\"$baseUrl\"")
     }
 
     buildTypes {
@@ -39,6 +54,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 
