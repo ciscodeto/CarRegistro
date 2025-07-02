@@ -3,6 +3,8 @@ package com.ciscodeto.carregistro.di
 import android.content.Context
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.ciscodeto.carregistro.cars.application.car.create.CreateCar
+import com.ciscodeto.carregistro.cars.application.car.create.CreateCarImpl
 import com.ciscodeto.carregistro.cars.application.car.delete.DeleteCar
 import com.ciscodeto.carregistro.cars.application.car.delete.DeleteCarImpl
 import com.ciscodeto.carregistro.cars.application.car.getAll.GetCars
@@ -48,6 +50,7 @@ val carsModule = module {
     single<CarRepository> { CarRepositoryRoomImpl(get()) }
     single<GetCars> { GetCarsImpl(get(), get()) }
     single<UpdateCar> { UpdateCarImpl(get()) }
+    single<CreateCar> { CreateCarImpl(get()) }
     single<DeleteCar> { DeleteCarImpl(get()) }
     single<ImportApiCars> { ImportApiCarsImpl(get(), get()) }
 }
