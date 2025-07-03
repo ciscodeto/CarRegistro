@@ -4,7 +4,7 @@ Aplicativo Android nativo em Kotlin para gerenciamento de dados de veículos. Co
 ## Funcionalidades
 - Consulta de montadoras e veículos via API
 - Armazenamento local dos dados com Room
-- Inserção e exclusão manual de veículos
+- Inserção, atualização exclusão manual de veículos
 - Interface amigável com tratamento de erros
 
 ## Tecnologias
