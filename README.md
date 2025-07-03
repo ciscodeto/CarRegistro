@@ -8,9 +8,11 @@ Aplicativo Android nativo em Kotlin para gerenciamento de dados de veículos. Co
 - Interface amigável com tratamento de erros
 
 ## Tecnologias
+- Kotlin como linguagem de desenvolvimento
 - Room para armazenamento em banco local
 - Ktor para chamadas de API
 - Koin para injeção de dependência
+- Jetpack Compose para UI
 
 ## Como rodar
 1. Clone o repositório
