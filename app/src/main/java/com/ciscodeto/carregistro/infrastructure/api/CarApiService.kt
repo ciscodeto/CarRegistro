@@ -10,7 +10,7 @@ class CarApiService(
     private val client: HttpClient
 ) {
     suspend fun getManufacturers(): List<ManufacturerDto> {
-        val manufacturers = client.get("manufactures")
+        val manufacturers = client.get("/manufactures")
         if (manufacturers.status == HttpStatusCode.OK) {
             return manufacturers.body()
         } else {
@@ -19,7 +19,7 @@ class CarApiService(
     }
 
     suspend fun getCars(): List<CarResponse> {
-        val cars = client.get("vehicles")
+        val cars = client.get("/vehicles")
         if (cars.status == HttpStatusCode.OK) {
             return cars.body()
         } else {
