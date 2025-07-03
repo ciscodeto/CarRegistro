@@ -62,7 +62,11 @@ val manufacturersModule = module {
 
 val viewModelModule = module {
     viewModel {
-        CarsListViewModel(get(), get(), get(), get())
+        CarsListViewModel(
+            get(), get(),
+            get(), get(),
+            get(), get()
+        )
     }
 }
 

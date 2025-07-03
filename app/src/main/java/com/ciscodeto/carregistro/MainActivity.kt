@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.ciscodeto.carregistro.cars.presentation.screens.CarsListScreen
 import com.ciscodeto.carregistro.di.appModules
-import com.ciscodeto.carregistro.ui.theme.CarregistroTheme
+import com.ciscodeto.carregistro.core.ui.theme.CarregistroTheme
 import org.koin.compose.KoinApplication
 
 class MainActivity : ComponentActivity() {
