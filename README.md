@@ -21,7 +21,7 @@ Aplicativo Android nativo em Kotlin para gerenciamento de dados de veículos. Co
     **Importante: Agora, na frente do sinal de igual (=), você precisa colar o endereço completo da API que o aplicativo usará.**
     Exemplo: Se o endereço for ```https://api.meusite.app/```, a linha deve ficar assim com uma **barra** no final:
     ```BASE_URL=https://api.meusite.app/```
-5. Execute em um emulador ou dispositivo
+6. Execute em um emulador ou dispositivo
 
 ## APK
 Você encontra o APK compilado na pasta `apk/`
