@@ -15,6 +15,7 @@ import com.ciscodeto.carregistro.cars.presentation.model.toDto
 import com.ciscodeto.carregistro.cars.presentation.model.toUi
 import com.ciscodeto.carregistro.cars.presentation.screens.composables.dialog.FormAction
 import com.ciscodeto.carregistro.core.ui.events.UiEvent
+import com.ciscodeto.carregistro.core.utils.Result
 import com.ciscodeto.carregistro.manufacturers.getAll.GetManufacturers
 import com.ciscodeto.carregistro.manufacturers.getAll.ManufacturerDto
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -41,6 +42,10 @@ class CarsListViewModel(
     val carToEdit: StateFlow<CarUi?> = _carToEdit
 
     var formTitle by mutableStateOf("")
+    private var formValidator = FormValidator()
+
+    private val _formErrors = MutableStateFlow<Set<FormValidator.FormErrors>>(emptySet())
+    val formErrors: StateFlow<Set<FormValidator.FormErrors>> = _formErrors
 
     var carIdToDelete: Int? = null
     private var formAction by mutableStateOf(FormAction.CREATE)
@@ -70,7 +75,7 @@ class CarsListViewModel(
     fun onDeleteClicked(id: Int) {
         carIdToDelete = id
         viewModelScope.launch {
-            _uiEvent.emit(UiEvent.ShowDeleteConfirmation)
+            _uiEvent.emit(UiEvent.ShowConfirmationModal)
         }
     }
 
@@ -100,12 +105,20 @@ class CarsListViewModel(
     }
 
     fun confirmForm(car: CarUi) {
-        if (formAction == FormAction.EDIT) {
-            confirmUpdate(car)
+        val validationResults = formValidator.validate(car)
+        val errors = validationResults.mapNotNull { it as? Result.Error }.map { it.error }
+
+        if (errors.isNotEmpty()) {
+            _formErrors.value = errors.toSet()
         } else {
-            confirmCreate(car)
+            _formErrors.value = emptySet()
+            if (formAction == FormAction.EDIT) {
+                confirmUpdate(car)
+            } else {
+                confirmCreate(car)
+            }
+            onFormDismissed()
         }
-        onFormDismissed()
     }
 
     private fun confirmUpdate(car: CarUi) {
@@ -118,5 +131,8 @@ class CarsListViewModel(
 
     fun onFormDismissed() {
         _carToEdit.value = null
+        viewModelScope.launch {
+            _uiEvent.emit(UiEvent.CloseFormModal)
+        }
     }
 }

@@ -33,6 +33,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import com.ciscodeto.carregistro.cars.presentation.model.CarUi
+import com.ciscodeto.carregistro.cars.presentation.viewmodels.FormValidator
 import com.ciscodeto.carregistro.manufacturers.getAll.ManufacturerDto
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -43,6 +44,7 @@ fun FormDialog(
     onDismiss: () -> Unit,
     onConfirm: (car: CarUi) -> Unit,
     title: String,
+    errors: Set<FormValidator.FormErrors>
 ) {
     var car by remember(carToEdit) {
         mutableStateOf(
@@ -62,6 +64,11 @@ fun FormDialog(
 
     val currentYear = Calendar.getInstance().get(Calendar.YEAR)
     val years = remember { (currentYear downTo 1970).toList() }
+
+    val modelError = errors.contains(FormValidator.FormErrors.EMPTY_MODEL)
+    val manufacturerError = errors.contains(FormValidator.FormErrors.EMPTY_MANUFACTURER)
+    val yearError = errors.contains(FormValidator.FormErrors.EMPTY_YEAR)
+    val motorizationError = errors.contains(FormValidator.FormErrors.EMPTY_MOTORIZATION)
 
     Dialog(
         onDismissRequest = onDismiss
@@ -85,7 +92,16 @@ fun FormDialog(
                     onValueChange = { car = car.copy(model = it) },
                     label = { Text("Modelo") },
                     modifier = Modifier.fillMaxWidth(),
-                    singleLine = true
+                    singleLine = true,
+                    isError = modelError,
+                    supportingText = {
+                        if (modelError) {
+                            Text(
+                                text = "Este campo é obrigatório",
+                                color = MaterialTheme.colorScheme.error
+                            )
+                        }
+                    }
                 )
                 Spacer(modifier = Modifier.height(16.dp))
                 ExposedDropdownMenuBox(
@@ -93,12 +109,23 @@ fun FormDialog(
                     onExpandedChange = { manufacturerExpanded = !manufacturerExpanded }
                 ) {
                     OutlinedTextField(
-                        modifier = Modifier.menuAnchor(MenuAnchorType.PrimaryEditable).fillMaxWidth(),
+                        modifier = Modifier
+                            .menuAnchor(MenuAnchorType.PrimaryEditable)
+                            .fillMaxWidth(),
                         readOnly = true,
                         value = car.manufacturer,
                         onValueChange = {},
                         label = { Text("Montadora") },
                         trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = manufacturerExpanded) },
+                        isError = manufacturerError,
+                        supportingText = {
+                            if (manufacturerError) {
+                                Text(
+                                    text = "Este campo é obrigatório",
+                                    color = MaterialTheme.colorScheme.error
+                                )
+                            }
+                        }
                     )
                     ExposedDropdownMenu(
                         expanded = manufacturerExpanded,
@@ -115,6 +142,14 @@ fun FormDialog(
                         }
                     }
                 }
+                if (manufacturerError) {
+                    Text(
+                        text = "A montadora é obrigatória",
+                        color = MaterialTheme.colorScheme.error,
+                        style = MaterialTheme.typography.bodySmall,
+                        modifier = Modifier.padding(start = 16.dp, top = 4.dp)
+                    )
+                }
                 Spacer(modifier = Modifier.height(16.dp))
 
                 ExposedDropdownMenuBox(
@@ -122,12 +157,23 @@ fun FormDialog(
                     onExpandedChange = { yearExpanded = !yearExpanded }
                 ) {
                     OutlinedTextField(
-                        modifier = Modifier.menuAnchor().fillMaxWidth(),
+                        modifier = Modifier
+                            .menuAnchor(MenuAnchorType.PrimaryEditable)
+                            .fillMaxWidth(),
                         readOnly = true,
                         value = if (car.year == 0) "" else car.year.toString(),
                         onValueChange = {},
                         label = { Text("Ano") },
                         trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = yearExpanded) },
+                        isError = yearError,
+                        supportingText = {
+                            if (yearError) {
+                                Text(
+                                    text = "Este campo é obrigatório",
+                                    color = MaterialTheme.colorScheme.error
+                                )
+                            }
+                        }
                     )
                     ExposedDropdownMenu(
                         expanded = yearExpanded,
@@ -144,6 +190,14 @@ fun FormDialog(
                         }
                     }
                 }
+                if (yearError) {
+                    Text(
+                        text = "O ano é obrigatório",
+                        color = MaterialTheme.colorScheme.error,
+                        style = MaterialTheme.typography.bodySmall,
+                        modifier = Modifier.padding(start = 16.dp, top = 4.dp)
+                    )
+                }
                 Spacer(modifier = Modifier.height(16.dp))
 
                 OutlinedTextField(
@@ -155,7 +209,16 @@ fun FormDialog(
                     },
                     label = { Text("Motorização (ex: 1.6 Turbo)") },
                     modifier = Modifier.fillMaxWidth(),
-                    singleLine = true
+                    singleLine = true,
+                    isError = motorizationError,
+                    supportingText = {
+                        if (motorizationError) {
+                            Text(
+                                text = "Este campo é obrigatório",
+                                color = MaterialTheme.colorScheme.error
+                            )
+                        }
+                    }
                 )
             }
             Spacer(modifier = Modifier.height(16.dp))

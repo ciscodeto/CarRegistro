@@ -18,7 +18,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.ciscodeto.carregistro.cars.presentation.screens.composables.card.CarListElement
 import com.ciscodeto.carregistro.cars.presentation.screens.composables.dialog.ConfirmSelectionDialog
@@ -45,12 +44,16 @@ fun CarsListScreen(
     LaunchedEffect(Unit) {
         viewModel.uiEvent.collect { event ->
             when (event) {
-                is UiEvent.ShowDeleteConfirmation -> {
+                is UiEvent.ShowConfirmationModal -> {
                     showDeleteDialog = true
                 }
 
                 is UiEvent.ShowFormModal -> {
                     showForm = true
+                }
+
+                is UiEvent.CloseFormModal -> {
+                    showForm = false
                 }
             }
         }
@@ -61,14 +64,13 @@ fun CarsListScreen(
             carToEdit = carToEdit,
             manufacturers = manufacturers,
             onDismiss = {
-                showForm = false
                 viewModel.onFormDismissed()
             },
             onConfirm = { car ->
                 viewModel.confirmForm(car)
-                showForm = false
             },
             title = viewModel.formTitle,
+            errors = viewModel.formErrors.collectAsState().value
         )
     }
 
