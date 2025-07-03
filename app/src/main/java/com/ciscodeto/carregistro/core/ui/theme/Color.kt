@@ -1,4 +1,4 @@
-package com.ciscodeto.carregistro.ui.theme
+package com.ciscodeto.carregistro.core.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

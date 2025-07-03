@@ -1,4 +1,4 @@
-package com.ciscodeto.carregistro.ui.theme
+package com.ciscodeto.carregistro.core.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.runtime.Composable

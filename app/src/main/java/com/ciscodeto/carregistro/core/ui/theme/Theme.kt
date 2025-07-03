@@ -1,4 +1,4 @@
-package com.ciscodeto.carregistro.ui.theme
+package com.ciscodeto.carregistro.core.ui.theme
 
 import android.app.Activity
 import android.os.Build
