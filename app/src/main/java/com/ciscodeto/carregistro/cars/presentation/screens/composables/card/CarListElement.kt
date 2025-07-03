@@ -56,11 +56,11 @@ fun CarListElement(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                Column {
+                Column(modifier = Modifier.weight(1f)) {
                     Text(
                         text = carUi.manufacturer.uppercase(),
                         fontSize = 12.sp,
-                        fontWeight = FontWeight.Bold,
+                        fontWeight = FontWeight.Medium,
                         lineHeight = 12.sp
                     )
                     Text(
@@ -70,8 +70,6 @@ fun CarListElement(
                         lineHeight = 24.sp
                     )
                 }
-
-                Spacer(modifier = Modifier.weight(1f))
 
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(12.dp)

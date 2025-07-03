@@ -8,7 +8,7 @@ import kotlinx.serialization.json.Json
 import io.ktor.client.plugins.defaultRequest
 
 fun provideHttpClient(): HttpClient {
-    val client = HttpClient() {
+    val client = HttpClient {
         expectSuccess = true
         install(ContentNegotiation) {
             json(Json {

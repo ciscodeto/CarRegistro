@@ -40,6 +40,7 @@ fun CarsListScreen(
 
     var showDeleteDialog by remember { mutableStateOf(false) }
     var showForm by remember { mutableStateOf(false) }
+    var showInfo by remember { mutableStateOf(false) }
 
     LaunchedEffect(Unit) {
         viewModel.uiEvent.collect { event ->
@@ -52,11 +53,31 @@ fun CarsListScreen(
                     showForm = true
                 }
 
-                is UiEvent.CloseFormModal -> {
+                is UiEvent.CloseModal -> {
                     showForm = false
+                    showInfo = false
+                }
+
+                is UiEvent.ShowInfoModal -> {
+                    showInfo = true
                 }
             }
         }
+    }
+
+    if (showInfo) {
+        ConfirmSelectionDialog(
+            onDismiss = {
+                showInfo = false
+                viewModel.carIdToDelete = null
+            },
+            onConfirm = {
+                showInfo = false
+                viewModel.onFormDismissed()
+            },
+            title = viewModel.modalTitle,
+            message = viewModel.modalText,
+        )
     }
 
     if (showForm) {
@@ -69,7 +90,7 @@ fun CarsListScreen(
             onConfirm = { car ->
                 viewModel.confirmForm(car)
             },
-            title = viewModel.formTitle,
+            title = viewModel.modalTitle,
             errors = viewModel.formErrors.collectAsState().value
         )
     }

@@ -7,6 +7,10 @@ class ManufacturerRepositoryApiImpl(
     private val carApiService: CarApiService
 ) : ManufacturerRepository {
     override suspend fun getManufacturers(): List<ManufacturerDto> {
-        return carApiService.getManufacturers()
+        return try {
+             carApiService.getManufacturers()
+        } catch (e: Exception) {
+            emptyList()
+        }
     }
 }

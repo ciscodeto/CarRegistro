@@ -2,6 +2,7 @@ package com.ciscodeto.carregistro.cars.application.car.getAll
 
 import com.ciscodeto.carregistro.cars.application.car.repository.CarDto
 import com.ciscodeto.carregistro.cars.application.car.repository.CarRepository
+import com.ciscodeto.carregistro.manufacturers.getAll.ManufacturerDto
 import com.ciscodeto.carregistro.manufacturers.repository.ManufacturerRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map

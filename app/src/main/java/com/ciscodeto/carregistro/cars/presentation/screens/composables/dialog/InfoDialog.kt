@@ -2,7 +2,6 @@ package com.ciscodeto.carregistro.cars.presentation.screens.composables.dialog
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.content.MediaType.Companion.Text
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -23,9 +22,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 
 @Composable
-fun ConfirmSelectionDialog(
+fun InfoDialog(
     onDismiss: () -> Unit,
-    onConfirm: () -> Unit,
     title: String,
     message: String,
 ) {
@@ -59,11 +57,7 @@ fun ConfirmSelectionDialog(
                 horizontalArrangement = Arrangement.Center
             ) {
                 TextButton(onClick = onDismiss) {
-                    Text("Cancelar")
-                }
-                Spacer(modifier = Modifier.width(8.dp))
-                Button(onClick = onConfirm) {
-                    Text("Confirmar")
+                    Text("Ok")
                 }
             }
         }

@@ -2,6 +2,7 @@ package com.ciscodeto.carregistro.cars.presentation.screens.composables.dialog
 
 import android.icu.util.Calendar
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -76,6 +77,7 @@ fun FormDialog(
         Column(
             modifier = Modifier
                 .background(MaterialTheme.colorScheme.background)
+                .border(1.dp, MaterialTheme.colorScheme.onBackground)
                 .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {

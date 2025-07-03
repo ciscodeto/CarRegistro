@@ -41,7 +41,8 @@ class CarsListViewModel(
     private val _carToEdit = MutableStateFlow<CarUi?>(null)
     val carToEdit: StateFlow<CarUi?> = _carToEdit
 
-    var formTitle by mutableStateOf("")
+    var modalTitle by mutableStateOf("")
+    var modalText by mutableStateOf("")
     private var formValidator = FormValidator()
 
     private val _formErrors = MutableStateFlow<Set<FormValidator.FormErrors>>(emptySet())
@@ -59,7 +60,16 @@ class CarsListViewModel(
     }
 
     fun syncCars() {
-        viewModelScope.launch { importApiCars.importCars() }
+        viewModelScope.launch {
+            try {
+                importApiCars.importCars()
+            } catch (e: Exception) {
+                modalTitle = "Oops!"
+                modalText = "Ocorreu um erro ao sincronizar tente novamente mais tarde"
+                _uiEvent.emit(UiEvent.ShowInfoModal)
+            }
+        }
+        loadCars()
     }
 
     private fun loadCars() {
@@ -88,13 +98,13 @@ class CarsListViewModel(
     fun onUpdateClicked(car: CarUi) {
         _carToEdit.value = car
         formAction = FormAction.EDIT
-        formTitle = "Editar veículo"
+        modalTitle = "Editar veículo"
         showFormModal()
     }
 
     fun onCreateClicked() {
         formAction = FormAction.CREATE
-        formTitle = "Adicionar veículo"
+        modalTitle = "Adicionar veículo"
         showFormModal()
     }
 
@@ -132,7 +142,7 @@ class CarsListViewModel(
     fun onFormDismissed() {
         _carToEdit.value = null
         viewModelScope.launch {
-            _uiEvent.emit(UiEvent.CloseFormModal)
+            _uiEvent.emit(UiEvent.CloseModal)
         }
     }
 }
