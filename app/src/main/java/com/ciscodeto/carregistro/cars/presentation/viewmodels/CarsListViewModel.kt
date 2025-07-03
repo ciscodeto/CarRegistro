@@ -61,27 +61,6 @@ class CarsListViewModel(
 
     fun syncCars() {
         viewModelScope.launch {
-            when (val result = importApiCars.importCars()) {
-                is Result.Error -> {
-                    when (result.error) {
-                        ApiErrors.Network.NO_INTERNET_CONNECTION -> {
-                            modalTitle = "Oops!"
-                            modalText = "Sem conexão com a internet"
-                        }
-                        ApiErrors.Data.UNEXPECTED_ERROR -> {
-                            modalTitle = "Oops!"
-                            modalText = "Ocorreu um erro inesperado"
-                        }
-                        ApiErrors.Data.NOT_FOUND -> {
-                            modalTitle = "Oops!"
-                            modalText = "Não foi possível carregar os veículos"
-                        }
-                    }
-                }
-                is Result.Success -> {
-                    loadCars()
-                }
-            }
             try {
                 importApiCars.importCars()
             } catch (e: Exception) {
@@ -100,28 +79,7 @@ class CarsListViewModel(
     }
 
     private fun loadManufacturers() {
-        viewModelScope.launch {
-            when (val result = getManufacturers.getManufacturers()) {
-                is Result.Error -> {
-                    when (result.error) {
-                        ApiErrors.Network.NO_INTERNET_CONNECTION -> {
-                            modalTitle = "Oops!"
-                            modalText = "Sem conexão com a internet"
-                        }
-                        ApiErrors.Data.UNEXPECTED_ERROR -> {
-                            modalTitle = "Oops!"
-                            modalText = "Ocorreu um erro inesperado"
-                        }
-                        ApiErrors.Data.NOT_FOUND -> {
-                            modalTitle = "Oops!"
-                            modalText = "Não foi possível carregar as montadoras"
-                        }
-                    }
-                    _uiEvent.emit(UiEvent.ShowInfoModal)
-                }
-                is Result.Success -> _manufacturers.value = result.data
-            }
-        }
+        viewModelScope.launch { _manufacturers.value = getManufacturers.getManufacturers() }
     }
 
     fun onDeleteClicked(id: Int) {
