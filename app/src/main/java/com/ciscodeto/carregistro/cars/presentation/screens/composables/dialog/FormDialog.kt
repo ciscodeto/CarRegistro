@@ -144,14 +144,6 @@ fun FormDialog(
                         }
                     }
                 }
-                if (manufacturerError) {
-                    Text(
-                        text = "A montadora é obrigatória",
-                        color = MaterialTheme.colorScheme.error,
-                        style = MaterialTheme.typography.bodySmall,
-                        modifier = Modifier.padding(start = 16.dp, top = 4.dp)
-                    )
-                }
                 Spacer(modifier = Modifier.height(16.dp))
 
                 ExposedDropdownMenuBox(
@@ -191,14 +183,6 @@ fun FormDialog(
                             )
                         }
                     }
-                }
-                if (yearError) {
-                    Text(
-                        text = "O ano é obrigatório",
-                        color = MaterialTheme.colorScheme.error,
-                        style = MaterialTheme.typography.bodySmall,
-                        modifier = Modifier.padding(start = 16.dp, top = 4.dp)
-                    )
                 }
                 Spacer(modifier = Modifier.height(16.dp))
 
