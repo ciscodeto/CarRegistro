@@ -1,4 +1,4 @@
-package com.ciscodeto.carregistro.cars.presentation.screens.composables
+package com.ciscodeto.carregistro.cars.presentation.screens.composables.card
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -84,7 +84,7 @@ fun CarListElement(
                                 tint = MaterialTheme.colorScheme.primary
                             )
                         },
-                        text = "ano ${carUi.year}"
+                        text = "ANO ${carUi.year}"
                     )
                     ConfigCard(
                         icon = {
@@ -94,7 +94,7 @@ fun CarListElement(
                                 tint = MaterialTheme.colorScheme.primary
                             )
                         },
-                        text = "motor ${carUi.motorization}"
+                        text = "MOTOR ${carUi.motorization}"
                     )
                 }
 

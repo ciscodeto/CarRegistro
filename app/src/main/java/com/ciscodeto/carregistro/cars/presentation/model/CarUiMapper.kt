@@ -4,6 +4,7 @@ import com.ciscodeto.carregistro.cars.application.car.repository.CarDto
 
 fun CarDto.toUi() = CarUi(
     id = id,
+    idApi = idApi,
     model = model,
     manufacturerId = manufacturerId,
     manufacturer = manufacturer ?: "Montadora não encontrada",
@@ -13,7 +14,7 @@ fun CarDto.toUi() = CarUi(
 
 fun CarUi.toDto() = CarDto(
     id = id,
-    idApi = null,
+    idApi = idApi,
     model = model,
     manufacturerId = manufacturerId,
     manufacturer = manufacturer,

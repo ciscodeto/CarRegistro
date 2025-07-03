@@ -1,4 +1,4 @@
-package com.ciscodeto.carregistro.cars.presentation.screens.composables
+package com.ciscodeto.carregistro.cars.presentation.screens.composables.card
 
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.height

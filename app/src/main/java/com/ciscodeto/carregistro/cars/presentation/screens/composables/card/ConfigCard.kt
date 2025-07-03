@@ -1,4 +1,4 @@
-package com.ciscodeto.carregistro.cars.presentation.screens.composables
+package com.ciscodeto.carregistro.cars.presentation.screens.composables.card
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -52,7 +52,7 @@ fun ConfigCard(icon: @Composable () -> Unit, text: String) {
                 text = text,
                 fontSize = 12.sp,
                 lineHeight = 12.sp,
-                fontWeight = FontWeight.Bold,
+                fontWeight = FontWeight.Thin,
                 textAlign = TextAlign.Center,
                 maxLines = 3,
             )
