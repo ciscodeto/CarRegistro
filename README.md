@@ -15,7 +15,7 @@ Aplicativo Android nativo em Kotlin para gerenciamento de dados de veículos. Co
 ## Como rodar
 1. Clone o repositório
 2. Abra no Android Studio
-3. Crie na pasta ```/app``` um arquivo nomeado exatamente como: ```local.properties```
+3. Crie na pasta ```app/``` um arquivo nomeado exatamente como: ```local.properties```
 4. Coloque no arquivo ```local.properties``` o texto a seguir
     ```BASE_URL=```
     Importante: Agora, na frente do sinal de igual (=), você precisa colar o endereço completo da API que o aplicativo usará.
@@ -24,4 +24,4 @@ Aplicativo Android nativo em Kotlin para gerenciamento de dados de veículos. Co
 5. Execute em um emulador ou dispositivo
 
 ## APK
-Você encontra o APK compilado na pasta `/apk`
+Você encontra o APK compilado na pasta `apk/`
