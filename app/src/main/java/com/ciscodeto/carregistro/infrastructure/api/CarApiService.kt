@@ -30,12 +30,6 @@ class CarApiService(
             } else {
                 throw ApiException("Erro ao buscar fabricantes: ${manufacturers.status.description}")
             }
-        } catch (e: RedirectResponseException) {
-            throw ApiException("Houve um redirecionamento inesperado ao buscar fabricantes.")
-        } catch (e: ClientRequestException) {
-            throw ApiException("Erro na requisição para buscar fabricantes: ${e.response.status.description}")
-        } catch (e: ServerResponseException) {
-            throw ApiException("O servidor encontrou um erro ao buscar fabricantes.")
         } catch (e: IOException) {
             throw NoInternetException("Falha na conexão ao buscar fabricantes. Verifique sua internet.")
         } catch (e: Exception) {
@@ -55,14 +49,6 @@ class CarApiService(
             } else {
                 throw ApiException("Erro ao buscar carros: ${carsResponse.status.description}")
             }
-        } catch (e: RedirectResponseException) {
-            throw ApiException("Houve um redirecionamento inesperado ao buscar carros.")
-        } catch (e: ClientRequestException) {
-            throw ApiException("Erro na requisição para buscar carros: ${e.response.status.description}")
-        } catch (e: ServerResponseException) {
-            throw ApiException("O servidor encontrou um erro ao buscar carros.")
-        } catch (e: NoTransformationFoundException) {
-            throw ApiException("Erro ao processar a resposta dos carros: Formato inesperado.")
         } catch (e: IOException) {
             throw NoInternetException("Falha na conexão ao buscar carros. Verifique sua internet.")
         } catch (e: Exception) {
