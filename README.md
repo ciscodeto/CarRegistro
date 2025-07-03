@@ -18,10 +18,10 @@ Aplicativo Android nativo em Kotlin para gerenciamento de dados de veículos. Co
 1. Clone o repositório
 2. Abra no Android Studio
 3. Crie na pasta ```app/``` um arquivo vazio nomeado exatamente como: ```local.properties```
-4. Escreva no arquivo ```local.properties``` que deve estar vazio o texto a seguir
-    ```BASE_URL=```
-    **Importante: Agora, na frente do sinal de igual (=), você precisa colar o endereço completo da API que o aplicativo usará.**
-    Exemplo: Se o endereço for ```https://api.meusite.app/```, a linha deve ficar assim com uma **barra** no final:
+4. Escreva no arquivo ```local.properties``` que deve estar vazio o texto a seguir: \
+    - ```BASE_URL=```
+    - **Importante: Agora, na frente do sinal de igual (=), você precisa colar o endereço completo da API que o aplicativo usará.**
+    - Exemplo: Se o endereço for ```https://api.meusite.app/```, a linha deve ficar assim com uma **barra** no final:
     ```BASE_URL=https://api.meusite.app/```
 6. Execute em um emulador ou dispositivo
 
